@@ -51,24 +51,25 @@ function spam(msg) {
     let words = msg.text.split(" ")
 
     let amount = parseInt(words[1])
-    if (amount) {
-        for (let i = 0; i < amount; i++){
-            let lessWords = words.slice(2)
-            let spamMessage = lessWords.join(" ")
-            if (spamMessage === '')
-                spamMessage = 'Spamming you'
-            slack.chat.postMessage({
-                token: config('SLACK_TOKEN'),
-                icon_emoji: config('ICON_EMOJI'),
-                channel: msg.channel,
-                username: 'Starbot',
-                text: spamMessage
-            }, (err, data) => {
-                if (err) throw err
-                let txt = _.truncate(data.message.text)
-                console.log(`🤖  beep boop: I responded a mention with "${txt}"`)
-            })
-        }
+
+    if (!amount)
+        amount = 5
+
+    for (let i = 0; i < amount; i++) {
+        let spamMessage = words.slice(2).join(" ")
+        if (spamMessage === '')
+            spamMessage = 'Spamming you :pave:'
+        slack.chat.postMessage({
+            token: config('SLACK_TOKEN'),
+            icon_emoji: config('ICON_EMOJI'),
+            channel: msg.channel,
+            username: 'Starbot',
+            text: spamMessage
+        }, (err, data) => {
+            if (err) throw err
+            let txt = _.truncate(data.message.text)
+            console.log(`🤖  beep boop: I responded a mention with "${txt}"`)
+        })
     }
 }
 
