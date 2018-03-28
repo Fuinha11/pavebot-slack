@@ -16,14 +16,13 @@ bot.message((msg) => {
   if (_.includes(msg.text.match(/<@([A-Z0-9])+>/igm), `<@${this.self.id}>`)) mentions(msg)
 
     let text = String(msg.text)
-    console.log(text)
-  if (text == "!lol") {
+  if (text === "!lol") {
       slack.chat.postMessage({
           token: config('SLACK_TOKEN'),
           icon_emoji: config('ICON_EMOJI'),
           channel: msg.channel,
           username: 'Starbot',
-          text: `lol back to you mofo`
+          text: `LOL back to you mofo`
       }, (err, data) => {
           if (err) throw err
 
