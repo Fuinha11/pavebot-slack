@@ -52,7 +52,7 @@ function spam(msg) {
 
     let amount = parseInt(words[1])
     if (amount) {
-        for (let i = 0; i < ammount; i++){
+        for (let i = 0; i < amount; i++){
             slack.chat.postMessage({
                 token: config('SLACK_TOKEN'),
                 icon_emoji: config('ICON_EMOJI'),
