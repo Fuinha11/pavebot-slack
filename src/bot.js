@@ -15,7 +15,7 @@ bot.message((msg) => {
   if (!msg.user) return
   if (!_.includes(msg.text.match(/<@([A-Z0-9])+>/igm), `<@${this.self.id}>`)) return
 
-    let text = msg.text
+    let text = String(msg.text)
   if (text.contains("lol")) {
       slack.chat.postMessage({
           token: config('SLACK_TOKEN'),
