@@ -4,7 +4,7 @@
 const slack = require('slack')
 const _ = require('lodash')
 const config = require('./config')
-const actions = require('bot-actions')
+const actions = require('./bot-actions')
 
 let bot = slack.rtm.client()
 
