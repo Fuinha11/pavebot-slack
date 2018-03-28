@@ -46,8 +46,13 @@ app.post('/commands/starbot', (req, res) => {
 app.post('/commands/google', (req, res) => {
     let payload = req.body
 
-    if (validate(payload, res))
+    if (!payload || payload.token !== config('STARBOT_COMMAND_TOKEN')) {
+        let err = '✋  Star—what? An invalid slash token was provided\n' +
+            '   Is your Slack slash token correctly configured?'
+        console.log(err)
+        res.status(401).end(err)
         return
+    }
 
     let cmd = _.reduce(commands, (a, cmd) => {
         return payload.text.match(cmd.pattern) ? cmd : a
@@ -66,14 +71,3 @@ app.listen(config('PORT'), (err) => {
     bot.listen({ token: config('SLACK_TOKEN') })
   }
 })
-
-function validate(payload, res) {
-    if (!payload || payload.token !== config('STARBOT_COMMAND_TOKEN')) {
-        let err = '✋  Star—what? An invalid slash token was provided\n' +
-            '   Is your Slack slash token correctly configured?'
-        console.log(err)
-        res.status(401).end(err)
-        return true
-    }
-    return false
-}
