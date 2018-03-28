@@ -29,7 +29,7 @@ function spam(msg) {
         let spamMessage = words.slice(2).join(" ")
         if (spamMessage === '')
             spamMessage = 'Spamming you :pave:'
-        setTimeout(postMessage(spamMessage), 666)
+        setTimeout(postMessage(msg.channel, spamMessage), 666)
     }
 }
 
