@@ -1,4 +1,7 @@
 
+'use strict'
+
+
 function lolBack(msg) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
