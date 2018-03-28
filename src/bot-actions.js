@@ -6,15 +6,15 @@ const _ = require('lodash')
 const config = require('./config')
 
 function lolBack(msg) {
-    postMessage(`lol back to you mofo`)
+    postMessage(msg.channel, `lol back to you mofo`)
 }
 
 function emailBack(msg) {
-    postMessage(`O email oficial do Modo Pavêtivo é pavetivo@gmail.com a senha é epaveoupacume`)
+    postMessage(msg.channel, `O email oficial do Modo Pavêtivo é pavetivo@gmail.com a senha é epaveoupacume`)
 }
 
 function mentions(msg) {
-   postMessage(`beep boop: I hear you loud and clear!`)
+   postMessage(msg.channel, `beep boop: I hear you loud and clear!`)
 }
 
 function spam(msg) {
@@ -33,12 +33,12 @@ function spam(msg) {
     }
 }
 
-function postMessage(message) {
+function postMessage(channel, message) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
-        channel: msg.channel,
-        username: 'Starbot',
+        channel: channel,
+        username: 'PaveBot',
         text: message
     }, (err, data) => {
         if (err) throw err
