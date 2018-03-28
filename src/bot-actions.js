@@ -53,8 +53,8 @@ function spam(msg) {
     let amount = parseInt(words[1])
     if (amount) {
         for (let i = 0; i < amount; i++){
-            words.slice(2)
-            let spamMessage = words.join(" ")
+            let lessWords = words.slice(2)
+            let spamMessage = lessWords.join(" ")
             if (spamMessage === '')
                 spamMessage = 'Spamming you'
             slack.chat.postMessage({
