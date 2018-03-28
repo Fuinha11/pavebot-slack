@@ -15,6 +15,22 @@ bot.message((msg) => {
   if (!msg.user) return
   if (!_.includes(msg.text.match(/<@([A-Z0-9])+>/igm), `<@${this.self.id}>`)) return
 
+  if (msg.text.contains("lol")) {
+      slack.chat.postMessage({
+          token: config('SLACK_TOKEN'),
+          icon_emoji: config('ICON_EMOJI'),
+          channel: msg.channel,
+          username: 'Starbot',
+          text: `lol back to you mofo`
+      }, (err, data) => {
+          if (err) throw err
+
+          let txt = _.truncate(data.message.text)
+
+          console.log(`🤖  beep boop: I responded with "${txt}"`)
+      })
+  }
+
   slack.chat.postMessage({
     token: config('SLACK_TOKEN'),
     icon_emoji: config('ICON_EMOJI'),
