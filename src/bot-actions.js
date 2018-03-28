@@ -6,45 +6,15 @@ const _ = require('lodash')
 const config = require('./config')
 
 function lolBack(msg) {
-    slack.chat.postMessage({
-        token: config('SLACK_TOKEN'),
-        icon_emoji: config('ICON_EMOJI'),
-        channel: msg.channel,
-        username: 'Starbot',
-        text: `lol back to you mofo`
-    }, (err, data) => {
-        if (err) throw err
-        let txt = _.truncate(data.message.text)
-        console.log(`🤖  beep boop: I responded with "${txt}"`)
-    })
+    postMessage(`lol back to you mofo`)
 }
 
 function emailBack(msg) {
-    slack.chat.postMessage({
-        token: config('SLACK_TOKEN'),
-        icon_emoji: config('ICON_EMOJI'),
-        channel: msg.channel,
-        username: 'Starbot',
-        text: `O email oficial do Modo Pavêtivo é pavetivo@gmail.com a senha é epaveoupacume`
-    }, (err, data) => {
-        if (err) throw err
-        let txt = _.truncate(data.message.text)
-        console.log(`🤖  beep boop: I responded with "${txt}"`)
-    })
+    postMessage(`O email oficial do Modo Pavêtivo é pavetivo@gmail.com a senha é epaveoupacume`)
 }
 
 function mentions(msg) {
-    slack.chat.postMessage({
-        token: config('SLACK_TOKEN'),
-        icon_emoji: config('ICON_EMOJI'),
-        channel: msg.channel,
-        username: 'Starbot',
-        text: `beep boop: I hear you loud and clear!`
-    }, (err, data) => {
-        if (err) throw err
-        let txt = _.truncate(data.message.text)
-        console.log(`🤖  beep boop: I responded a mention with "${txt}"`)
-    })
+   postMessage(`beep boop: I hear you loud and clear!`)
 }
 
 function spam(msg) {
@@ -59,18 +29,22 @@ function spam(msg) {
         let spamMessage = words.slice(2).join(" ")
         if (spamMessage === '')
             spamMessage = 'Spamming you :pave:'
-        slack.chat.postMessage({
-            token: config('SLACK_TOKEN'),
-            icon_emoji: config('ICON_EMOJI'),
-            channel: msg.channel,
-            username: 'Starbot',
-            text: spamMessage
-        }, (err, data) => {
-            if (err) throw err
-            let txt = _.truncate(data.message.text)
-            console.log(`🤖  beep boop: I responded a mention with "${txt}"`)
-        })
+        setTimeout(postMessage(spamMessage), 666)
     }
+}
+
+function postMessage(message) {
+    slack.chat.postMessage({
+        token: config('SLACK_TOKEN'),
+        icon_emoji: config('ICON_EMOJI'),
+        channel: msg.channel,
+        username: 'Starbot',
+        text: message
+    }, (err, data) => {
+        if (err) throw err
+        let txt = _.truncate(data.message.text)
+        console.log(`🤖  beep boop: I responded with "${txt}"`)
+    })
 }
 
 module.exports = {
