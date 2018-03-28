@@ -53,12 +53,16 @@ function spam(msg) {
     let amount = parseInt(words[1])
     if (amount) {
         for (let i = 0; i < amount; i++){
+            words.slice(2)
+            let spamMessage = words.join(" ")
+            if (spamMessage === '')
+                spamMessage = 'Spamming you'
             slack.chat.postMessage({
                 token: config('SLACK_TOKEN'),
                 icon_emoji: config('ICON_EMOJI'),
                 channel: msg.channel,
                 username: 'Starbot',
-                text: `Spamming you`
+                text: spamMessage
             }, (err, data) => {
                 if (err) throw err
                 let txt = _.truncate(data.message.text)
