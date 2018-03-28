@@ -19,10 +19,10 @@ bot.message((msg) => {
 
     switch (words[0]) {
         case "!lol":
-            lolBack()
+            lolBack(msg)
             break
         case "!email":
-            emailBack()
+            emailBack(msg)
             break
     }
 
@@ -30,7 +30,7 @@ bot.message((msg) => {
 
 module.exports = bot
 
-function lolBack() {
+function lolBack(msg) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
@@ -44,7 +44,7 @@ function lolBack() {
     })
 }
 
-function emailBack() {
+function emailBack(msg) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
