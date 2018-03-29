@@ -53,6 +53,9 @@ function bolaCommand(msg) {
         case "dump":
             postMessage(msg.channel, bola.dump())
             break
+        case "help":
+            postMessage(msg.channel, bola.help())
+            break
         default:
             let finalMessage = message.join(" ")
             finalMessage += "? \n"
@@ -98,6 +101,35 @@ function perolaCommand(msg) {
     }
 }
 
+function help(msg) {
+    let attachments = [
+        {
+            title: 'Bola 8, a mágica e mística',
+            color: '#2FA44F',
+            text: bola.help(),
+            mrkdwn_in: ['text']
+        },
+        {
+            title: 'Bola 8, a mágica e mística',
+            color: '#2FA44F',
+            text: bola.help(),
+            mrkdwn_in: ['text']
+        }
+    ]
+    slack.chat.postMessage({
+        token: config('SLACK_TOKEN'),
+        icon_emoji: config('ICON_EMOJI'),
+        channel: msg.channel,
+        username: 'PaveBot',
+        text: "Esse é um help geralzão assim...",
+        attachments: attachments
+    }, (err, data) => {
+        if (err) throw err
+        let txt = _.truncate(data.message.text)
+        console.log(`🤖  beep boop: I responded with "${txt}"`)
+    })
+}
+
 function postMessage(channel, message) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
@@ -124,6 +156,7 @@ module.exports = {
     lolBack,
     spam,
     bolaCommand,
+    help,
     bolaOito,
     bolaOitoAdd,
     bolaOitoDump,

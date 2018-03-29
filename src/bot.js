@@ -43,6 +43,9 @@ bot.message((msg) => {
                 break
             case "!perola":
                 actions.perolaCommand(msg)
+                break
+            case "!help":
+                actions.help(msg)
         }
 
     } catch (e) {
