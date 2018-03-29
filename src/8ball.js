@@ -17,7 +17,8 @@ function getFileContent(srcPath) {
 }
 
 function dump() {
-    return getFileContent(ballFile)
+    let answers = getFileContent(ballFile).split("; ")
+    return answers.join('\n')
 }
 
 module.exports = {
