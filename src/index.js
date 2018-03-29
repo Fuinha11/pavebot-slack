@@ -43,7 +43,7 @@ app.post('/commands/starbot', (req, res) => {
   cmd.handler(payload, res)
 })
 
-app.post('/commands/google', (req, res) => {
+app.post('/commands/wakeup', (req, res) => {
     let payload = req.body
 
     if (!payload || payload.token !== config('STARBOT_COMMAND_TOKEN')) {

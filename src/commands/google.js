@@ -28,7 +28,7 @@ let attachments = [
 const handler = (payload, res) => {
     let msg = _.defaults({
         channel: payload.channel_name,
-        attachments: attachments
+        text: 'To acordado! :eyes:'
     }, msgDefaults)
 
     res.set('content-type', 'application/json')
