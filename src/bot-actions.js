@@ -23,18 +23,17 @@ function spam(msg) {
     let amount = parseInt(words[1])
     if (!amount || amount > 50)
         amount = 5
-    for (let i = 0; i < amount; i++) {
-        let spamMessage = words.slice(2).join(" ")
-        if (spamMessage === '')
-            spamMessage = 'Spamming you :pave:'
-        let i = 0
-        let timer = setInterval(function() {
-            i++
-            if (i >= amount)
-                clearInterval(timer)
-            postMessage(msg.channel, spamMessage)
-        }, 666)
-    }
+    let spamMessage = words.slice(2).join(" ")
+    if (spamMessage === '')
+        spamMessage = 'Spamming you :pave:'
+    let i = 0
+    let timer = setInterval(function () {
+        i++
+        if (i >= amount)
+            clearInterval(timer)
+        postMessage(msg.channel, spamMessage)
+    }, 666)
+
 }
 
 function bolaOito(msg) {
