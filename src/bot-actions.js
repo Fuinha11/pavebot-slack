@@ -44,13 +44,17 @@ function bolaOito(msg) {
     postMessage(msg.channel, finalMessage)
 }
 
+function bolaOitoDump(msg) {
+    postMessage(msg.channel, bola.dump())
+}
+
 function postMessage(channel, message) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
         channel: channel,
         username: 'PaveBot',
-        text: "``` " + message + " ```"
+        text: "```" + message + "```"
     }, (err, data) => {
         if (err) throw err
         let txt = _.truncate(data.message.text)
@@ -64,5 +68,6 @@ module.exports = {
     emailBack,
     lolBack,
     spam,
-    bolaOito
+    bolaOito,
+    bolaOitoDump
 }

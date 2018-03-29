@@ -32,6 +32,9 @@ bot.message((msg) => {
             case "!8ball":
                 actions.bolaOito(msg)
                 break
+            case "!8dump":
+                actions.bolaOitoDump(msg)
+                break
         }
 
     } catch (e) {

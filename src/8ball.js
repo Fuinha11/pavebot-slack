@@ -16,6 +16,11 @@ function getFileContent(srcPath) {
     return fs.readFileSync(srcPath, 'utf8')
 }
 
+function dump() {
+    return getFileContent(ballFile)
+}
+
 module.exports = {
-    getRandomAnswer
+    getRandomAnswer,
+    dump
 }
