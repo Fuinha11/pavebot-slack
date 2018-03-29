@@ -3,7 +3,7 @@
 
 let fs = require('fs');
 
-let ballFile = "./files/8ball.txt"
+let ballFile = "/files/8ball.txt"
 
 function getRandomAnswer(callback) {
     getFileContent(ballFile, function (data) {
@@ -14,7 +14,7 @@ function getRandomAnswer(callback) {
 }
 
 function getFileContent(srcPath, callback) {
-    fs.readFile(srcPath, 'utf8', function (err, data) {
+    fs.readFileSync(srcPath, 'utf8', function (err, data) {
             if (err) throw err;
             callback(data);
         }

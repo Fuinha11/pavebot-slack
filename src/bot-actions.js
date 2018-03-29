@@ -19,7 +19,6 @@ function mentions(msg) {
 }
 
 function spam(msg) {
-    throw "lol deu merda"
     let words = msg.text.split(" ")
 
     let amount = parseInt(words[1])

@@ -40,7 +40,7 @@ bot.message((msg) => {
             icon_emoji: config('ICON_EMOJI'),
             channel: msg.channel,
             username: 'PaveBot',
-            text: "''buguei \n" + e.toString() + "''"
+            text: "'buguei: - " + e.toString() + "'"
         }, (err, data) => {
             if (err) throw err
             let txt = _.truncate(data.message.text)
