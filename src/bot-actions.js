@@ -23,10 +23,14 @@ function spam(msg) {
     let amount = parseInt(words[1])
     if (!amount || amount > 50)
         amount = 5
+    else
+        words = words.slice(1)
     let time = parseInt(words[2])
     if (!time || time > 60000 || time < 666)
         time = 666
-    let spamMessage = words.slice(2).join(" ")
+    else
+        words = words.slice(1)
+    let spamMessage = words.join(" ")
     if (spamMessage === '')
         spamMessage = 'Spamming you :pave:'
     let i = 0
