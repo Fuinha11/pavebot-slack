@@ -12,7 +12,6 @@ function getRandomAnswer() {
 }
 
 function getFileContent(srcPath) {
-    console.log("ta rolando content")
     return fs.readFileSync(srcPath, 'utf8')
 }
 
@@ -23,7 +22,8 @@ function dump() {
 
 function addAnswer(answer) {
     answer = "; " + answer
-    fs.appendFileSync('/tmp/fs.tmp', answer);
+    console.log(answer)
+    fs.appendFileSync(ballFile, answer);
     return dump()
 }
 
