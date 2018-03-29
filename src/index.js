@@ -9,6 +9,7 @@ const config = require('./config')
 const commands = require('./commands')
 const helpCommand = require('./commands/help')
 const googleCommand = require('./commands/google')
+const bola = require('./8ball')
 
 let bot = require('./bot')
 
@@ -24,6 +25,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => { res.send('\n 👋 🌍 \n') })
+
+app.get('/8ball', (req, res) => {res.send(bola.getRandomAnswer())})
 
 app.post('/commands/starbot', (req, res) => {
   let payload = req.body

@@ -39,10 +39,9 @@ function bolaOito(msg) {
     let words = msg.text.split(" ")
     let finalMessage = words.slice(1).join(" ")
     finalMessage += "? \n "
-    bola.getRandomAnswer(function (message) {
-        finalMessage += message
-        postMessage(msg.channel, finalMessage)
-    })
+    let answer = bola.getRandomAnswer()
+    finalMessage += answer
+    postMessage(msg.channel, finalMessage)
 }
 
 function postMessage(channel, message) {

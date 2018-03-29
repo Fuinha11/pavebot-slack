@@ -3,22 +3,17 @@
 
 let fs = require('fs');
 
-let ballFile = "/src/files/8ball.txt"
+let ballFile = "./src/files/8ball.txt"
 
-function getRandomAnswer(callback) {
-    getFileContent(ballFile, function (data) {
-        let answers = data.split(";")
-        let index = Math.round(Math.random()*answers.length)
-        callback(answers[index])
-    })
+function getRandomAnswer() {
+    let answers = getFileContent(ballFile).split(";")
+    let index = Math.round(Math.random() * (answers.length-1))
+    return answers[index]
 }
 
-function getFileContent(srcPath, callback) {
-    fs.readFileSync(srcPath, 'utf8', function (err, data) {
-            if (err) throw err;
-            callback(data);
-        }
-    );
+function getFileContent(srcPath) {
+    console.log("ta rolando content")
+    return fs.readFileSync(srcPath, 'utf8')
 }
 
 module.exports = {
