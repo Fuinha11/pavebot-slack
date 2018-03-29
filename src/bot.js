@@ -28,6 +28,9 @@ bot.message((msg) => {
         case "!spam":
             actions.spam(msg)
             break
+        case "!8ball":
+            actions.bolaOito(msg)
+            break
     }
 
 })

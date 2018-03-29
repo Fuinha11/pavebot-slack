@@ -4,6 +4,7 @@
 const slack = require('slack')
 const _ = require('lodash')
 const config = require('./config')
+const bola = require('./8ball')
 
 function lolBack(msg) {
     postMessage(msg.channel, `lol back to you mofo`)
@@ -14,7 +15,7 @@ function emailBack(msg) {
 }
 
 function mentions(msg) {
-   postMessage(msg.channel, `beep boop: I hear you loud and clear!`)
+   postMessage(msg.channel, `beep boop: qq seis qué cmg carái?!`)
 }
 
 function spam(msg) {
@@ -22,7 +23,7 @@ function spam(msg) {
 
     let amount = parseInt(words[1])
 
-    if (!amount)
+    if (!amount || amount > 50)
         amount = 5
 
     for (let i = 0; i < amount; i++) {
@@ -32,6 +33,16 @@ function spam(msg) {
         let timeout = (i * 666) + 1000
         setTimeout(postMessage(msg.channel, spamMessage), timeout)
     }
+}
+
+function bolaOito(msg) {
+    let words = msg.text.split(" ")
+    let finalMessage = words.slice(1).join(" ")
+    finalMessage.append("? \n ")
+    bola.getRandomAnswer(function (message) {
+        finalMessage.append(message)
+        postMessage(msg.channel, finalMessage)
+    })
 }
 
 function postMessage(channel, message) {
@@ -48,9 +59,11 @@ function postMessage(channel, message) {
     })
 }
 
+
 module.exports = {
     mentions,
     emailBack,
     lolBack,
-    spam
+    spam,
+    bolaOito
 }
