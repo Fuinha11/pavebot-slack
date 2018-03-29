@@ -20,12 +20,13 @@ function mentions(msg) {
 
 function spam(msg) {
     let words = msg.text.split(" ")
-    let amount = parseInt(words[1])
+    words = words.slice(1)
+    let amount = parseInt(words[0])
     if (!amount || amount > 50)
         amount = 5
     else
         words = words.slice(1)
-    let time = parseInt(words[2])
+    let time = parseInt(words[0])
     if (!time || time > 60000 || time < 666)
         time = 666
     else
