@@ -19,8 +19,7 @@ function mentions(msg) {
 }
 
 function spam(msg) {
-    let words = msg.text.split(" ")
-    words = words.slice(1)
+    let words = splitRemoveCommand(msg.text)
     let amount = parseInt(words[0])
     if (!amount || amount > 50)
         amount = 5
@@ -45,8 +44,7 @@ function spam(msg) {
 }
 
 function bolaOito(msg) {
-    let words = msg.text.split(" ")
-    let finalMessage = words.slice(1).join(" ")
+    let finalMessage = splitRemoveCommand(msg.text).join(" ")
     finalMessage += "? \n"
     let answer = bola.getRandomAnswer()
     finalMessage += answer
@@ -54,8 +52,7 @@ function bolaOito(msg) {
 }
 
 function bolaOitoAdd(msg) {
-    let words = msg.text.split(" ")
-    let finalMessage = words.slice(1).join(" ")
+    let finalMessage = splitRemoveCommand(msg.text).join(" ")
     postMessage(msg.channel, bola.addAnswer(finalMessage))
 }
 
@@ -75,6 +72,11 @@ function postMessage(channel, message) {
         let txt = _.truncate(data.message.text)
         console.log(`🤖  beep boop: I responded with "${txt}"`)
     })
+}
+
+function splitRemoveCommand(message) {
+    let words = message.split(" ")
+    return words.slice(1)
 }
 
 
