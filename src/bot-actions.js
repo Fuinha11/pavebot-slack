@@ -53,6 +53,12 @@ function bolaOito(msg) {
     postMessage(msg.channel, finalMessage)
 }
 
+function bolaOitoAdd(msg) {
+    let words = msg.text.split(" ")
+    let finalMessage = words.slice(1).join(" ")
+    postMessage(msg.channel, bola.addAnswer(finalMessage))
+}
+
 function bolaOitoDump(msg) {
     postMessage(msg.channel, bola.dump())
 }
@@ -78,5 +84,6 @@ module.exports = {
     lolBack,
     spam,
     bolaOito,
+    bolaOitoAdd,
     bolaOitoDump
 }

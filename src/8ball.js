@@ -21,7 +21,14 @@ function dump() {
     return answers.join('\n')
 }
 
+function addAnswer(answer) {
+    answer = "; " + answer
+    fs.appendFileSync('/tmp/fs.tmp', answer);
+    return dump()
+}
+
 module.exports = {
     getRandomAnswer,
+    addAnswer,
     dump
 }
