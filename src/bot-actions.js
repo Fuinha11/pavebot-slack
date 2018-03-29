@@ -23,6 +23,9 @@ function spam(msg) {
     let amount = parseInt(words[1])
     if (!amount || amount > 50)
         amount = 5
+    let time = parseInt(words[2])
+    if (!time || time > 60000 || time < 666)
+        time = 666
     let spamMessage = words.slice(2).join(" ")
     if (spamMessage === '')
         spamMessage = 'Spamming you :pave:'
@@ -32,7 +35,7 @@ function spam(msg) {
         if (i >= amount)
             clearInterval(timer)
         postMessage(msg.channel, spamMessage)
-    }, 666)
+    }, time)
 
 }
 
