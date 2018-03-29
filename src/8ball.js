@@ -6,7 +6,7 @@ let fs = require('fs');
 let ballFile = "./src/files/8ball.txt"
 
 function getRandomAnswer() {
-    let answers = getFileContent(ballFile).split(";")
+    let answers = getFileContent(ballFile).split("; ")
     let index = Math.round(Math.random() * (answers.length-1))
     return answers[index]
 }
