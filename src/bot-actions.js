@@ -30,7 +30,7 @@ function spam(msg) {
         let i = 0
         let timer = setInterval(function() {
             i++
-            if (i <= amount)
+            if (i >= amount)
                 clearInterval(timer)
             postMessage(msg.channel, spamMessage)
         }, 666)
