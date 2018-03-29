@@ -38,7 +38,7 @@ function spam(msg) {
 function bolaOito(msg) {
     let words = msg.text.split(" ")
     let finalMessage = words.slice(1).join(" ")
-    finalMessage += "? \n "
+    finalMessage += "? \n"
     let answer = bola.getRandomAnswer()
     finalMessage += answer
     postMessage(msg.channel, finalMessage)
@@ -50,7 +50,7 @@ function postMessage(channel, message) {
         icon_emoji: config('ICON_EMOJI'),
         channel: channel,
         username: 'PaveBot',
-        text: "` " + message + " `"
+        text: "``` " + message + " ```"
     }, (err, data) => {
         if (err) throw err
         let txt = _.truncate(data.message.text)
