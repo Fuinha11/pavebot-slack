@@ -38,9 +38,9 @@ function spam(msg) {
 function bolaOito(msg) {
     let words = msg.text.split(" ")
     let finalMessage = words.slice(1).join(" ")
-    finalMessage.append("? \n ")
+    finalMessage += "? \n "
     bola.getRandomAnswer(function (message) {
-        finalMessage.append(message)
+        finalMessage += message
         postMessage(msg.channel, finalMessage)
     })
 }
