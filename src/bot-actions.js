@@ -44,6 +44,26 @@ function spam(msg) {
 
 }
 
+function bolaCommand(msg) {
+    let message = splitRemoveCommand(msg.text)
+    switch (message[0]) {
+        case "add":
+            postMessage(msg.channel, bola.addAnswer(message.slice(1).join(" ")))
+            break
+        case "dump":
+            postMessage(msg.channel, bola.dump())
+            break
+        default:
+            let finalMessage = message.join(" ")
+            finalMessage += "? \n"
+            let answer = bola.getRandomAnswer()
+            finalMessage += answer
+            postMessage(msg.channel, finalMessage)
+            break
+    }
+
+}
+
 function bolaOito(msg) {
     let finalMessage = splitRemoveCommand(msg.text).join(" ")
     finalMessage += "? \n"
@@ -63,14 +83,19 @@ function bolaOitoDump(msg) {
 
 function perolaCommand(msg) {
     let message = splitRemoveCommand(msg.text)
-    if (message[0] === "search")
-        postMessage(msg.channel, perola.searchPerola(message.slice(1).join(" ")))
-    else if (message[0] === "add")
-        postMessage(msg.channel, perola.addPerola(message.slice(1).join(" ")))
-    else if (message[0] === "dump")
-        postMessage(msg.channel, perola.dump())
-    else
-        postMessage(msg.channel, perola.getRandomAnswer())
+    switch (message[0]) {
+        case "search":
+            postMessage(msg.channel, perola.searchPerola(message.slice(1).join(" ")))
+            break
+        case "add":
+            postMessage(msg.channel, perola.addPerola(message.slice(1).join(" ")))
+            break
+        case "dump":
+            postMessage(msg.channel, perola.dump())
+            break
+        default:
+            postMessage(msg.channel, perola.getRandomAnswer())
+    }
 }
 
 function postMessage(channel, message) {
@@ -98,6 +123,7 @@ module.exports = {
     emailBack,
     lolBack,
     spam,
+    bolaCommand,
     bolaOito,
     bolaOitoAdd,
     bolaOitoDump,

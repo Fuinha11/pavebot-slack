@@ -30,7 +30,10 @@ bot.message((msg) => {
                 actions.spam(msg)
                 break
             case "!8ball":
-                actions.bolaOito(msg)
+                actions.bolaCommand(msg)
+                break
+            case "!8":
+                actions.bolaCommand(msg)
                 break
             case "!8dump":
                 actions.bolaOitoDump(msg)
