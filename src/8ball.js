@@ -2,6 +2,7 @@
 'use strict'
 
 let fs = require('fs');
+const _ = require('lodash');
 
 let ballFile = "./src/files/8ball.txt"
 
@@ -20,11 +21,16 @@ function dump() {
     return answers.join('\n')
 }
 
+function getLast() {
+    let answers = getFileContent(ballFile).split("; ")
+    return _.last(answers)
+}
+
 function addAnswer(answer) {
     answer = "; " + answer
     console.log(answer)
     fs.appendFileSync(ballFile, answer);
-    return dump()
+    return getLast()
 }
 
 module.exports = {

@@ -2,6 +2,7 @@
 'use strict'
 
 let fs = require('fs');
+const _ = require('lodash');
 
 let perolasFile = "./src/files/perolas.txt"
 
@@ -20,20 +21,25 @@ function dump() {
     return answers.join('\n')
 }
 
+function getLast() {
+    let answers = getFileContent(perolasFile).split("; ")
+    return _.last(answers)
+}
+
 function addPerola(perola) {
-    if (perola.contains("; "))
+    if (perolas.includes("; "))
         throw "Perolas não podem ter ; jagunço"
     perola = "; " + perola
     console.log(perola)
     fs.appendFileSync(perolasFile, perola);
-    return dump()
+    return getLast()
 }
 
 function searchPerola(content) {
     let answers = getFileContent(perolasFile).split("; ")
     let results = new Array()
     for (let i = 0; i < answers.length; i++) {
-        if (answers[i].contains(content))
+        if (answers[i].toLowerCase().includes(content.toLowerCase()))
         results.add(answers[i])
     }
     if (results.length === 0)
