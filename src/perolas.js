@@ -27,7 +27,7 @@ function getLast() {
 }
 
 function addPerola(perola) {
-    if (perolas.includes("; "))
+    if (perola.includes("; "))
         throw "Perolas não podem ter ; jagunço"
     perola = "; " + perola
     console.log(perola)
@@ -40,7 +40,7 @@ function searchPerola(content) {
     let results = new Array()
     for (let i = 0; i < answers.length; i++) {
         if (answers[i].toLowerCase().includes(content.toLowerCase()))
-        results.add(answers[i])
+        results.push(answers[i])
     }
     if (results.length === 0)
         return "Não achei nada =("
