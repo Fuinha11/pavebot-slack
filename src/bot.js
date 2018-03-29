@@ -38,6 +38,8 @@ bot.message((msg) => {
             case "!8add":
                 actions.bolaOitoAdd(msg)
                 break
+            case "!perola":
+                actions.perolaCommand(msg)
         }
 
     } catch (e) {

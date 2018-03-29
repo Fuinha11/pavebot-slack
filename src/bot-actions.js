@@ -5,6 +5,7 @@ const slack = require('slack')
 const _ = require('lodash')
 const config = require('./config')
 const bola = require('./8ball')
+const perola = require('./perolas')
 
 function lolBack(msg) {
     postMessage(msg.channel, `lol back to you mofo`)
@@ -60,6 +61,18 @@ function bolaOitoDump(msg) {
     postMessage(msg.channel, bola.dump())
 }
 
+function perolaCommand(msg) {
+    let message = splitRemoveCommand(msg.text)
+    if (message[0] === "search")
+        postMessage(msg.channel, perola.searchPerola(message.slice(1).join(" ")))
+    else if (message[0] === "add")
+        postMessage(msg.channel, perola.addPerola(message.slice(1).join(" ")))
+    else if (message[0] === "dump")
+        postMessage(msg.channel, perola.dump())
+    else
+        postMessage(msg.channel, perola.getRandomAnswer())
+}
+
 function postMessage(channel, message) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
@@ -87,5 +100,6 @@ module.exports = {
     spam,
     bolaOito,
     bolaOitoAdd,
-    bolaOitoDump
+    bolaOitoDump,
+    perolaCommand,
 }
