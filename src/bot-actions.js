@@ -144,6 +144,20 @@ function postMessage(channel, message) {
     })
 }
 
+function mockMessage(message) {
+    slack.chat.postMessage({
+        token: config('SLACK_TOKEN'),
+        icon_emoji: config('ICON_EMOJI'),
+        channel: channel,
+        username: 'PaveBot',
+        text: "```" + message + "```"
+    }, (err, data) => {
+        if (err) throw err
+        let txt = _.truncate(data.message.text)
+        console.log(`🤖  beep boop: I responded with "${txt}"`)
+    })
+}
+
 function splitRemoveCommand(message) {
     let words = message.split(" ")
     return words.slice(1)
@@ -161,4 +175,5 @@ module.exports = {
     bolaOitoAdd,
     bolaOitoDump,
     perolaCommand,
+    mockMessage
 }
