@@ -147,7 +147,6 @@ function postMessage(channel, message) {
         icon_emoji: config('ICON_EMOJI'),
         channel: channel,
         unfurl_links: true,
-        unfurl_media: true,
         username: 'PaveBot',
         text: "```" + message + "```"
     }, (err, data) => {
@@ -163,7 +162,6 @@ function postRawMessage(channel, message) {
         icon_emoji: config('ICON_EMOJI'),
         channel: channel,
         unfurl_links: true,
-        unfurl_media: true,
         username: 'PaveBot',
         text: message
     }, (err, data) => {
