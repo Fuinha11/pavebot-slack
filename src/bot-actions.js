@@ -6,7 +6,7 @@ const _ = require('lodash')
 const config = require('./config')
 const bola = require('./8ball')
 const perola = require('./perolas')
-const google = require('./google-actions')
+const gActions = require('./google-actions')
 
 function lolBack(msg) {
     postMessage(msg.channel, `lol back to you mofo`)
@@ -133,7 +133,7 @@ function gSearch(msg) {
     let message = splitRemoveCommand(msg.text).join(" ")
     console.log("entrou")
     postMessage('procurando' + "\"" + message + "\"")
-    google.luckySearch(message, function postResponse(url) {
+    gActions.luckySearch(message, function postResponse(url) {
         console.log("entrou mesmo")
         postRawMessage( msg.channel, "[ " + message + " ]" + url)
         console.log("saiu")

@@ -11,6 +11,7 @@ const helpCommand = require('./commands/help')
 const googleCommand = require('./commands/google')
 const bola = require('./8ball')
 const google = require('./google-actions')
+const actions = require('./bot-actions')
 
 let bot = require('./bot')
 
@@ -30,6 +31,7 @@ app.get('/', (req, res) => { res.send('\n 👋 🌍 \n') })
 app.get('/8ball', (req, res) => {res.send(bola.getRandomAnswer())})
 
 app.get('/search', (req, res) => {res.send(google.luckySearch("macaco", function (hue) {
+    actions.logMessage(hue)
 }))})
 
 app.post('/commands/starbot', (req, res) => {
