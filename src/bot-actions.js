@@ -6,6 +6,7 @@ const _ = require('lodash')
 const config = require('./config')
 const bola = require('./8ball')
 const perola = require('./perolas')
+const google = require('./google-actions')
 
 function lolBack(msg) {
     postMessage(msg.channel, `lol back to you mofo`)
@@ -128,33 +129,52 @@ function help(msg) {
     })
 }
 
+function gSearch(msg) {
+    let message = splitRemoveCommand(msg.text).join(" ")
+    console.log("entrou")
+    postMessage('procurando' + "\"" + message + "\"")
+    google.luckySearch(message, function (url) {
+        console.log("entrou mesmo")
+        postRawMessage( msg.channel, "[ " + message + " ]" + url)
+        console.log("saiu")
+    })
+    console.log("passou")
+}
+
 function postMessage(channel, message) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
         channel: channel,
+        unfurl_links: true,
+        unfurl_media: true,
         username: 'PaveBot',
         text: "```" + message + "```"
     }, (err, data) => {
         if (err) throw err
         let txt = _.truncate(data.message.text)
         console.log(`🤖  beep boop: I responded with "${txt}"`)
-        logMessage(`🤖  beep boop: I responded with "${txt}"`)
     })
 }
 
-function logMessage(message) {
+function postRawMessage(channel, message) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
-        channel: 'CA7MF19JT',
+        channel: channel,
+        unfurl_links: true,
+        unfurl_media: true,
         username: 'PaveBot',
-        text:message
+        text: message
     }, (err, data) => {
         if (err) throw err
         let txt = _.truncate(data.message.text)
         console.log(`🤖  beep boop: I responded with "${txt}"`)
     })
+}
+
+function logMessage(message) {
+    postMessage('CA7MF19JT', message)
 }
 
 function splitRemoveCommand(message) {
@@ -174,5 +194,7 @@ module.exports = {
     bolaOitoAdd,
     bolaOitoDump,
     perolaCommand,
-    logMessage
+    logMessage,
+    postRawMessage,
+    gSearch
 }

@@ -29,7 +29,8 @@ app.get('/', (req, res) => { res.send('\n 👋 🌍 \n') })
 
 app.get('/8ball', (req, res) => {res.send(bola.getRandomAnswer())})
 
-app.get('/search', (req, res) => {res.send(google.luckySearch("wikipedia"))})
+app.get('/search', (req, res) => {res.send(google.luckySearch("macaco", function (hue) {
+}))})
 
 app.post('/commands/starbot', (req, res) => {
   let payload = req.body

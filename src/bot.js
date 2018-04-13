@@ -46,7 +46,9 @@ bot.message((msg) => {
                 break
             case "!help":
                 actions.help(msg)
-                actions.logMessage("lol")
+                break
+            case "!g":
+                actions.gSearch(msg)
         }
 
     } catch (e) {
@@ -61,6 +63,7 @@ bot.message((msg) => {
             let txt = _.truncate(data.message.text)
             console.log(`🤖  beep boop: I responded with "${txt}"`)
         })
+        actions.logMessage("buguei: - " + e.toString())
     }
 
 })

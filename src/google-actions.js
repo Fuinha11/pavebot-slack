@@ -4,15 +4,12 @@
 const request = require('request');
 const actions = require('./bot-actions')
 
-function luckySearch(searchName) {
+function luckySearch(searchName, callback) {
     searchName = searchName.replace(" ", '+')
     let url = 'http://www.google.com/search?q=' + searchName
     request(url, function (error, response, body) {
-        console.log('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         let resp = parseResponse(body.toString())
-        console.log(resp)
-        actions.logMessage('[lol] ' + resp)
+        callback(resp)
     })
 }
 
