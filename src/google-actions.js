@@ -2,7 +2,6 @@
 'use strict'
 
 const request = require('request');
-const actions = require('./bot-actions')
 
 function luckySearch(searchName, callback) {
     searchName = searchName.replace(" ", '+')
@@ -20,7 +19,6 @@ function youtubeSearch(searchName) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         let resp = parseResponse(body.toString())
-        actions.logMessage(resp)
     })
 }
 

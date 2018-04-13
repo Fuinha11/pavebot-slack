@@ -132,10 +132,10 @@ function help(msg) {
 function gSearch(msg) {
     let message = splitRemoveCommand(msg.text).join(" ")
     console.log("entrou")
-    postMessage('procurando' + "\"" + message + "\"")
+    postMessage(msg.channel, 'procurando ' + "\"" + message + "\"")
     gActions.luckySearch(message, function postResponse(url) {
         console.log("entrou mesmo")
-        postRawMessage( msg.channel, "[ " + message + " ]" + url)
+        postRawMessage( msg.channel, "[ " + message + " ] " + url)
         console.log("saiu")
     })
     console.log("passou")
@@ -174,7 +174,7 @@ function postRawMessage(channel, message) {
 }
 
 function logMessage(message) {
-    postMessage('CA7MF19JT', message)
+    postRawMessage('CA7MF19JT', message)
 }
 
 function splitRemoveCommand(message) {
