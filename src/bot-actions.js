@@ -142,6 +142,7 @@ function postMessage(channel, message) {
         let txt = _.truncate(data.message.text)
         console.log(`🤖  beep boop: I responded with "${txt}"`)
     })
+    console.log(["chanel", channel])
 }
 
 function mockMessage(message) {
