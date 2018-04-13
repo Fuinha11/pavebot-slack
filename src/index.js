@@ -29,7 +29,7 @@ app.get('/', (req, res) => { res.send('\n 👋 🌍 \n') })
 
 app.get('/8ball', (req, res) => {res.send(bola.getRandomAnswer())})
 
-app.get('/search', (req, res) => {res.send(google.luckySearch("pinto roliço"))})
+app.get('/search', (req, res) => {res.send(google.luckySearch("wikipedia"))})
 
 app.post('/commands/starbot', (req, res) => {
   let payload = req.body
@@ -73,7 +73,7 @@ app.listen(config('PORT'), (err) => {
   console.log(`\n🚀  Starbot LIVES on PORT ${config('PORT')} 🚀`)
 
   if (config('SLACK_TOKEN')) {
-    console.log(`🤖  beep boop: @starbot is real-time\n`)
+    console.log(`🤖  beep boop: @pavebot is real-time\n`)
     bot.listen({ token: config('SLACK_TOKEN') })
   }
 })

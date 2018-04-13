@@ -106,14 +106,12 @@ function help(msg) {
         {
             title: 'Bola 8, a mágica e mística',
             color: '#2FA44F',
-            text: bola.help(),
-            mrkdwn_in: ['text']
+            text: "lol"
         },
         {
             title: 'Bola 8, a mágica e mística',
             color: '#2FA44F',
-            text: bola.help(),
-            mrkdwn_in: ['text']
+            text: "lol"
         }
     ]
     slack.chat.postMessage({
@@ -141,17 +139,17 @@ function postMessage(channel, message) {
         if (err) throw err
         let txt = _.truncate(data.message.text)
         console.log(`🤖  beep boop: I responded with "${txt}"`)
+        logMessage(`🤖  beep boop: I responded with "${txt}"`)
     })
-    console.log(["chanel", channel])
 }
 
-function mockMessage(message) {
+function logMessage(message) {
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
-        channel: channel,
+        channel: 'CA7MF19JT',
         username: 'PaveBot',
-        text: "```" + message + "```"
+        text:message
     }, (err, data) => {
         if (err) throw err
         let txt = _.truncate(data.message.text)
@@ -176,5 +174,5 @@ module.exports = {
     bolaOitoAdd,
     bolaOitoDump,
     perolaCommand,
-    mockMessage
+    logMessage
 }

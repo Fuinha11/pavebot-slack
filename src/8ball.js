@@ -35,9 +35,9 @@ function addAnswer(answer) {
 
 function help() {
     return "!8 ou !8ball (pergunta), responde sua pergunta com os poderes da bola 8" +
-        "\n !8 add (responta), adiciona a sua resposta a lista" +
-        "\n !8 dump, faz um dump de todas as respostas" +
-        "\n !8 help, essa menssagem =B "
+         "\n!8 add (responta), adiciona a sua resposta a lista" +
+         "\n!8 dump, faz um dump de todas as respostas" +
+         "\n!8 help, essa menssagem =B "
 }
 
 module.exports = {

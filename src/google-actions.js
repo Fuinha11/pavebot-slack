@@ -12,7 +12,7 @@ function luckySearch(searchName) {
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         let resp = parseResponse(body.toString())
         console.log(resp)
-        actions.mockMessage(resp)
+        actions.logMessage('[lol] ' + resp)
     })
 }
 
@@ -23,14 +23,13 @@ function youtubeSearch(searchName) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         let resp = parseResponse(body.toString())
-        console.log(resp)
-        actions.mockMessage(resp)
+        actions.logMessage(resp)
     })
 }
 
 function parseResponse(resp) {
     let index = resp.indexOf("<h3 class=\"r\"><a href=\"/url?q=") + 30
-    let words = resp.substr(index).split(";")
+    let words = resp.substr(index).split("&amp")
     return words[0]
 }
 

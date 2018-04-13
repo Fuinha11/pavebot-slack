@@ -46,6 +46,7 @@ bot.message((msg) => {
                 break
             case "!help":
                 actions.help(msg)
+                actions.logMessage("lol")
         }
 
     } catch (e) {
