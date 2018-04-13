@@ -1,3 +1,6 @@
+
+'use strict'
+
 const request = require('request');
 const actions = require('./bot-actions')
 
