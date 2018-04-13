@@ -133,7 +133,7 @@ function gSearch(msg) {
     let message = splitRemoveCommand(msg.text).join(" ")
     console.log("entrou")
     postMessage('procurando' + "\"" + message + "\"")
-    google.luckySearch(message, function (url) {
+    google.luckySearch(message, function postResponse(url) {
         console.log("entrou mesmo")
         postRawMessage( msg.channel, "[ " + message + " ]" + url)
         console.log("saiu")
