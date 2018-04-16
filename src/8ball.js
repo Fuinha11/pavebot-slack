@@ -7,7 +7,7 @@ const _ = require('lodash');
 let ballFile = "./src/files/8ball.txt"
 
 function getRandomAnswer() {
-    let answers = getFileContent(ballFile).split("; ")
+    let answers = getFileContent(ballFile).split(";\n")
     let index = Math.round(Math.random() * (answers.length-1))
     return answers[index]
 }
@@ -17,17 +17,16 @@ function getFileContent(srcPath) {
 }
 
 function dump() {
-    let answers = getFileContent(ballFile).split("; ")
-    return answers.join('\n')
+    return getFileContent(ballFile)
 }
 
 function getLast() {
-    let answers = getFileContent(ballFile).split("; ")
+    let answers = getFileContent(ballFile).split(";\n")
     return _.last(answers)
 }
 
 function addAnswer(answer) {
-    answer = "; " + answer
+    answer = ";\n" + answer
     console.log(answer)
     fs.appendFileSync(ballFile, answer);
     return getLast()

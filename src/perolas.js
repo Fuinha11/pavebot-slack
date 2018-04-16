@@ -7,7 +7,7 @@ const _ = require('lodash');
 let perolasFile = "./src/files/perolas.txt"
 
 function getRandomAnswer() {
-    let answers = getFileContent(perolasFile).split("; ")
+    let answers = getFileContent(perolasFile).split(";\n")
     let index = Math.round(Math.random() * (answers.length-1))
     return answers[index]
 }
@@ -17,26 +17,25 @@ function getFileContent(srcPath) {
 }
 
 function dump() {
-    let answers = getFileContent(perolasFile).split("; ")
-    return answers.join('\n')
+    return getFileContent(perolasFile)
 }
 
 function getLast() {
-    let answers = getFileContent(perolasFile).split("; ")
+    let answers = getFileContent(perolasFile).split(";\n")
     return _.last(answers)
 }
 
 function addPerola(perola) {
     if (perola.includes("; "))
         throw "Perolas não podem ter ; jagunço"
-    perola = "; " + perola
+    perola = ";\n" + perola
     console.log(perola)
     fs.appendFileSync(perolasFile, perola);
     return getLast()
 }
 
 function searchPerola(content) {
-    let answers = getFileContent(perolasFile).split("; ")
+    let answers = getFileContent(perolasFile).split(";\n")
     let results = new Array()
     for (let i = 0; i < answers.length; i++) {
         if (answers[i].toLowerCase().includes(content.toLowerCase()))

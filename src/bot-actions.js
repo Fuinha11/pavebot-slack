@@ -188,7 +188,7 @@ function postRawMessage(channel, message) {
 }
 
 function logMessage(message) {
-    postRawMessage('CA7MF19JT', message)
+    postMessage('CA7MF19JT', message)
 }
 
 function splitRemoveCommand(message) {
