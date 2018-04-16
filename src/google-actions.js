@@ -19,15 +19,6 @@ function luckySearch(searchName, callback) {
     })
 }
 
-function imageSearch(searchName, callback) {
-    //Fix me this is not working
-    searchName = searchName.replace(" ", '+')
-    let url = 'http://www.google.com/search?q=' + searchName + '&btnI'
-    request(url, function (error, response, body) {
-        callback(this.uri.href)
-    })
-}
-
 function youtubeSearch(searchName, callback) {
     let url = 'site%3Ayoutube.com+' + searchName
     luckySearch(url, callback)
@@ -45,9 +36,17 @@ function parseResponse(resp) {
     return words[0]
 }
 
+function help() {
+    return "!g (termo), googleia o termo, safe search desativado + estou com sorte" +
+        "\n!y (termo), estou com sorte só que no Youtube" +
+        "\n!W (termo, busca o termo na Wikipédia)" +
+        "\n!g help, busca no google essa mensagem muito explicativa "
+}
+
 module.exports = {
     luckySearch,
     youtubeSearch,
-    wikiSearch
+    wikiSearch,
+    help
 }
 

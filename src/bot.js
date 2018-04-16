@@ -59,7 +59,7 @@ bot.message((msg) => {
             username: 'PaveBot',
             text: "```buguei: - " + e.toString() + " ```"
         }, (err, data) => {
-            if (err) throw err
+            if (err) logMessage("buguei: - " + err.status + err.message)
             let txt = _.truncate(data.message.text)
             console.log(`🤖 : "${txt}"`)
         })

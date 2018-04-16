@@ -90,10 +90,14 @@ function perolaCommand(msg) {
 
 function gSearch(msg) {
     let message = splitRemoveCommand(msg.text).join(" ")
-    postMessage(msg.channel, '[Google] ' + message)
-    gActions.luckySearch(message, function (url) {
-        gResponse(msg.channel, message, url)
-    })
+    if (message.startsWith("help"))
+        postMessage(msg.channel, gActions.help())
+    else {
+        postMessage(msg.channel, '[Google] ' + message)
+        gActions.luckySearch(message, function (url) {
+            gResponse(msg.channel, message, url)
+        })
+    }
 }
 
 function ySearch(msg) {
@@ -123,7 +127,8 @@ function help(msg) {
 
     let attachments = '['
         + '{"title":"Bola 8", "color":"#000", "text":"' + bola.help() + '"},'
-        + '{"title":"Perolas", "color":"#fc9300", "text":"' + perola.help() + '"}'
+        + '{"title":"Perolas", "color":"#fc9300", "text":"' + perola.help() + '"},'
+        + '{"title":"Google", "color":"#e20000", "text":"' + gActions.help() + '"}'
         + ']'
 
     slack.chat.postMessage({
@@ -134,7 +139,7 @@ function help(msg) {
         text: "Esse é um help geralzão assim...",
         attachments: attachments
     }, (err, data) => {
-        if (err) throw err
+        if (err) logMessage("buguei: - " + err.status + err.message)
         let txt = _.truncate(data.message.text)
         console.log(`🤖 : "${txt}"`)
     })
@@ -149,7 +154,7 @@ function postMessage(channel, message) {
         username: 'PaveBot',
         text: "```" + message + "```"
     }, (err, data) => {
-        if (err) throw err
+        if (err) logMessage("buguei: - " + err.status + err.message)
         let txt = _.truncate(data.message.text)
         console.log(`🤖 : "${txt}"`)
     })
@@ -164,7 +169,7 @@ function postRawMessage(channel, message) {
         username: 'PaveBot',
         text: message
     }, (err, data) => {
-        if (err) throw err
+        if (err) logMessage("buguei: - " + err.status + err.message)
         let txt = _.truncate(data.message.text)
         console.log(`🤖 : "${txt}"`)
     })
