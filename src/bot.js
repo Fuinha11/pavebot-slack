@@ -35,12 +35,6 @@ bot.message((msg) => {
             case "!8":
                 actions.bolaCommand(msg)
                 break
-            case "!8dump":
-                actions.bolaOitoDump(msg)
-                break
-            case "!8add":
-                actions.bolaOitoAdd(msg)
-                break
             case "!perola":
                 actions.perolaCommand(msg)
                 break

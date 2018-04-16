@@ -48,9 +48,18 @@ function searchPerola(content) {
         return results.join("\n")
 }
 
+function help() {
+    return "!perola, solta uma pérola aleatória baseada na burrice coletiva" +
+        "\n!perola add (Perola - Autor), adiciona a sua pérola à lista" +
+        "\n!perola search (termo), busca as pérolas que tem esse termo (pode ser o autor tbem #fiqdik)" +
+        "\n!perola dump, faz um dump de todas as pérolas" +
+        "\n!perola help, essa menssagem jagunçola "
+}
+
 module.exports = {
     getRandomAnswer,
     addPerola,
     searchPerola,
-    dump
+    dump,
+    help
 }

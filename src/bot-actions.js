@@ -68,23 +68,6 @@ function bolaCommand(msg) {
 
 }
 
-function bolaOito(msg) {
-    let finalMessage = splitRemoveCommand(msg.text).join(" ")
-    finalMessage += "? \n"
-    let answer = bola.getRandomAnswer()
-    finalMessage += answer
-    postMessage(msg.channel, finalMessage)
-}
-
-function bolaOitoAdd(msg) {
-    let finalMessage = splitRemoveCommand(msg.text).join(" ")
-    postMessage(msg.channel, bola.addAnswer(finalMessage))
-}
-
-function bolaOitoDump(msg) {
-    postMessage(msg.channel, bola.dump())
-}
-
 function perolaCommand(msg) {
     let message = splitRemoveCommand(msg.text)
     switch (message[0]) {
@@ -96,6 +79,9 @@ function perolaCommand(msg) {
             break
         case "dump":
             postMessage(msg.channel, perola.dump())
+            break
+        case "help":
+            postMessage(msg.channel, perola.help())
             break
         default:
             postMessage(msg.channel, perola.getRandomAnswer())
@@ -137,7 +123,7 @@ function help(msg) {
 
     let attachments = '['
         + '{"title":"Bola 8", "color":"#000", "text":"' + bola.help() + '"},'
-        + '{"title":"Perolas", "color":"#fc9300", "text":"' + bola.help() + '"}'
+        + '{"title":"Perolas", "color":"#fc9300", "text":"' + perola.help() + '"}'
         + ']'
 
     slack.chat.postMessage({
@@ -201,9 +187,6 @@ module.exports = {
     spam,
     bolaCommand,
     help,
-    bolaOito,
-    bolaOitoAdd,
-    bolaOitoDump,
     perolaCommand,
     logMessage,
     postRawMessage,
