@@ -55,17 +55,6 @@ bot.message((msg) => {
             actions.surubao(msg)
 
     } catch (e) {
-        slack.chat.postMessage({
-            token: config('SLACK_TOKEN'),
-            icon_emoji: config('ICON_EMOJI'),
-            channel: msg.channel,
-            username: 'PaveBot',
-            text: "```buguei: - " + e.toString() + " ```"
-        }, (err, data) => {
-            if (err) logMessage("buguei: - " + err.status + err.message)
-            let txt = _.truncate(data.message.text)
-            console.log(`🤖 : "${txt}"`)
-        })
         actions.logMessage("buguei: - " + e.toString())
     }
 
