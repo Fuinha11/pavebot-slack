@@ -126,9 +126,10 @@ function gResponse(channel, message, url) {
 function help(msg) {
 
     let attachments = '['
-        + '{"title":"Bola 8", "color":"#000", "text":"' + bola.help() + '"},'
-        + '{"title":"Perolas", "color":"#fc9300", "text":"' + perola.help() + '"},'
-        + '{"title":"Google", "color":"#e20000", "text":"' + gActions.help() + '"}'
+        + '{"title":":8ball: Bola 8", "color":"#000", "text":"' + bola.help() + '"},'
+        + '{"title":":face_palm::skin-tone-5: Perolas", "color":"#fc9300", "text":"' + perola.help() + '"},'
+        + '{"title":":mag: Google", "color":"#e20000", "text":"' + gActions.help() + '"},'
+        + '{"title":"🤖 PaveBot", "color":"#2fb4fc", "text":"' + botHelp() + '"}'
         + ']'
 
     slack.chat.postMessage({
@@ -143,6 +144,13 @@ function help(msg) {
         let txt = _.truncate(data.message.text)
         console.log(`🤖 : "${txt}"`)
     })
+}
+
+function botHelp() {
+    return "!lol, rí de você" +
+        "\n!email, infos do email pavetivo" +
+        "\n!spam, spama o FDP sem dó!" +
+        "\n!help, esse super mega helper "
 }
 
 function postMessage(channel, message) {
