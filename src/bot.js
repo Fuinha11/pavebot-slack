@@ -67,7 +67,7 @@ bot.message((msg) => {
         }, (err, data) => {
             if (err) throw err
             let txt = _.truncate(data.message.text)
-            console.log(`🤖  beep boop: I responded with "${txt}"`)
+            console.log(`🤖 : "${txt}"`)
         })
         actions.logMessage("buguei: - " + e.toString())
     }

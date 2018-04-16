@@ -134,14 +134,12 @@ function gResponse(channel, message, url) {
 }
 
 function help(msg) {
-    let attachments = [
-        {
-            text: "lol"
-        },
-        {
-            text: "lol"
-        }
-    ]
+
+    let attachments = '['
+        + '{"title":"Bola 8", "color":"#000", "text":"' + bola.help() + '"},'
+        + '{"title":"Perolas", "color":"#fc9300", "text":"' + bola.help() + '"}'
+        + ']'
+
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
