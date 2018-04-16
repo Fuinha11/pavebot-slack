@@ -25,7 +25,6 @@ function youtubeSearch(searchName, callback) {
 }
 
 function wikiSearch(searchName, callback) {
-    searchName = searchName.replace(" ", '+')
     let url = 'site%3Awikipedia.org+' + searchName
     luckySearch(url, callback)
 }
