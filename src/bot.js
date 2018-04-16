@@ -49,6 +49,12 @@ bot.message((msg) => {
                 break
             case "!g":
                 actions.gSearch(msg)
+                break
+            case "!y":
+                actions.ySearch(msg)
+                break
+            case "!w":
+                actions.wSearch(msg)
         }
 
     } catch (e) {

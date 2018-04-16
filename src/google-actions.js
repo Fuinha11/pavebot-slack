@@ -5,20 +5,34 @@ const request = require('request');
 
 function luckySearch(searchName, callback) {
     searchName = searchName.replace(" ", '+')
-    let url = 'http://www.google.com/search?q=' + searchName
+    let url = 'http://www.google.com/search?q=' + searchName + '&btnI'
     request(url, function (error, response, body) {
-        let resp = parseResponse(body.toString())
-        callback(resp)
+        callback(this.uri.href)
     })
 }
 
-function youtubeSearch(searchName) {
+function imageSearch(searchName, callback) {
+    //Fix me this is not working
     searchName = searchName.replace(" ", '+')
-    let url = 'http://www.google.com/search?q=site%3Awww.youtube.com+' + searchName
+    let url = 'http://www.google.com/search?q=' + searchName + '&btnI'
     request(url, function (error, response, body) {
-        console.log('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        let resp = parseResponse(body.toString())
+        callback(this.uri.href)
+    })
+}
+
+function youtubeSearch(searchName, callback) {
+    searchName = searchName.replace(" ", '+')
+    let url = 'http://www.google.com/search?q=site%3Ayoutube.com+' + searchName + '&btnI'
+    request(url, function (error, response, body) {
+        callback(this.uri.href)
+    })
+}
+
+function wikiSearch(searchName, callback) {
+    searchName = searchName.replace(" ", '+')
+    let url = 'http://www.google.com/search?q=site%3Awikipedia.org+' + searchName + '&btnI'
+    request(url, function (error, response, body) {
+        callback(this.uri.href)
     })
 }
 
@@ -30,6 +44,7 @@ function parseResponse(resp) {
 
 module.exports = {
     luckySearch,
-    youtubeSearch
+    youtubeSearch,
+    wikiSearch
 }
 

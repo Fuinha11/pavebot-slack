@@ -17,7 +17,7 @@ function emailBack(msg) {
 }
 
 function mentions(msg) {
-   postMessage(msg.channel, `beep boop: qq seis qué cmg carái?!`)
+   postMessage(msg.channel, `🤖 Beep boop: qq seis qué cmg carái?!`)
 }
 
 function spam(msg) {
@@ -40,7 +40,7 @@ function spam(msg) {
         i++
         if (i >= amount)
             clearInterval(timer)
-        postMessage(msg.channel, spamMessage)
+        postRawMessage(msg.channel, spamMessage)
     }, time)
 
 }
@@ -102,16 +102,43 @@ function perolaCommand(msg) {
     }
 }
 
+function gSearch(msg) {
+    let message = splitRemoveCommand(msg.text).join(" ")
+    postMessage(msg.channel, '[Google] ' + message)
+    gActions.luckySearch(message, function (url) {
+        gResponse(msg.channel, message, url)
+    })
+}
+
+function ySearch(msg) {
+    let message = splitRemoveCommand(msg.text).join(" ")
+    postMessage(msg.channel, '[YouTube] ' + message)
+    gActions.youtubeSearch(message, function (url) {
+        gResponse(msg.channel, message, url)
+    })
+}
+
+function wSearch(msg) {
+    let message = splitRemoveCommand(msg.text).join(" ")
+    postMessage(msg.channel, '[Wikipedia] ' + message)
+    gActions.wikiSearch(message, function (url) {
+        gResponse(msg.channel, message, url)
+    })
+}
+
+function gResponse(channel, message, url) {
+    if (url.startsWith('http://') || url.startsWith('https://'))
+        postRawMessage( channel, "[ " + message + " ] " + url)
+    else
+        postMessage( channel, "[ " + message + " ] Não achei nada ='(")
+}
+
 function help(msg) {
     let attachments = [
         {
-            title: 'Bola 8, a mágica e mística',
-            color: '#2FA44F',
             text: "lol"
         },
         {
-            title: 'Bola 8, a mágica e mística',
-            color: '#2FA44F',
             text: "lol"
         }
     ]
@@ -125,20 +152,8 @@ function help(msg) {
     }, (err, data) => {
         if (err) throw err
         let txt = _.truncate(data.message.text)
-        console.log(`🤖  beep boop: I responded with "${txt}"`)
+        console.log(`🤖 : "${txt}"`)
     })
-}
-
-function gSearch(msg) {
-    let message = splitRemoveCommand(msg.text).join(" ")
-    console.log("entrou")
-    postMessage(msg.channel, 'procurando ' + "\"" + message + "\"")
-    gActions.luckySearch(message, function postResponse(url) {
-        console.log("entrou mesmo")
-        postRawMessage( msg.channel, "[ " + message + " ] " + url)
-        console.log("saiu")
-    })
-    console.log("passou")
 }
 
 function postMessage(channel, message) {
@@ -152,7 +167,7 @@ function postMessage(channel, message) {
     }, (err, data) => {
         if (err) throw err
         let txt = _.truncate(data.message.text)
-        console.log(`🤖  beep boop: I responded with "${txt}"`)
+        console.log(`🤖 : "${txt}"`)
     })
 }
 
@@ -167,7 +182,7 @@ function postRawMessage(channel, message) {
     }, (err, data) => {
         if (err) throw err
         let txt = _.truncate(data.message.text)
-        console.log(`🤖  beep boop: I responded with "${txt}"`)
+        console.log(`🤖 : "${txt}"`)
     })
 }
 
@@ -194,5 +209,7 @@ module.exports = {
     perolaCommand,
     logMessage,
     postRawMessage,
-    gSearch
+    gSearch,
+    ySearch,
+    wSearch
 }
