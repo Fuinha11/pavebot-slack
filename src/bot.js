@@ -51,7 +51,7 @@ bot.message((msg) => {
                 actions.wSearch(msg)
         }
 
-        if (words.includes("surubão") || words.includes("surubao") || words.includes("surubão?") || words.includes("surubao?"))
+        if (msg.text.includes("surub"))
             actions.surubao(msg)
 
     } catch (e) {
