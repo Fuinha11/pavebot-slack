@@ -4,7 +4,7 @@
 const request = require('request');
 
 function luckySearch(searchName, callback) {
-    searchName = searchName.split(" ").join("+")
+    searchName = searchName.split(" ").join("%20")
     let url = 'http://www.google.com/search?q=' + searchName + '&safe=inactive&btnI'
     const options = {
         url: url,
@@ -39,7 +39,7 @@ function parseResponse(resp) {
 function help() {
     return "!g (termo), googleia o termo, safe search desativado + estou com sorte" +
         "\n!y (termo), estou com sorte só que no Youtube" +
-        "\n!W (termo, busca o termo na Wikipédia)" +
+        "\n!w (termo, busca o termo na Wikipédia)" +
         "\n!g help, busca no google essa mensagem muito explicativa "
 }
 
