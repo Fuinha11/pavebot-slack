@@ -79,11 +79,18 @@ function perolaCommand(msg) {
             postMessage(msg.channel, perola.addPerola(message.slice(1).join(" ")))
             logMessage(perola.dump())
             break
+        case "bulk":
+            postMessage(msg.channel, perola.bulkAdd(message.slice(1).join(" ")))
+            logMessage(perola.dump())
+            break
         case "dump":
             postMessage(msg.channel, perola.dump())
             break
         case "help":
             postMessage(msg.channel, perola.help())
+            break
+        case "last":
+            postMessage(msg.channel, perola.getLast())
             break
         default:
             postMessage(msg.channel, perola.getRandomAnswer())

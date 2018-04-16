@@ -34,6 +34,13 @@ function addPerola(perola) {
     return getLast()
 }
 
+function bulkAdd(perola) {
+    perola = ";\n" + perola
+    console.log(perola)
+    fs.appendFileSync(perolasFile, perola);
+    return dump()
+}
+
 function searchPerola(content) {
     let answers = getFileContent(perolasFile).split(";\n")
     let results = new Array()
@@ -52,6 +59,7 @@ function help() {
         "\n!perola add (Perola - Autor), adiciona a sua pérola à lista" +
         "\n!perola search (termo), busca as pérolas que tem esse termo (pode ser o autor tbem #fiqdik)" +
         "\n!perola dump, faz um dump de todas as pérolas" +
+        "\n!perola last, mostra a última pérola criada" +
         "\n!perola help, essa menssagem jagunçola "
 }
 
@@ -60,5 +68,7 @@ module.exports = {
     addPerola,
     searchPerola,
     dump,
-    help
+    bulkAdd,
+    help,
+    getLast
 }
