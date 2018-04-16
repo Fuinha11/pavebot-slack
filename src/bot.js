@@ -51,6 +51,9 @@ bot.message((msg) => {
                 actions.wSearch(msg)
         }
 
+        if (words.includes("surubão") || words.includes("surubao") || words.includes("surubão?") || words.includes("surubao?"))
+            actions.surubao(msg)
+
     } catch (e) {
         slack.chat.postMessage({
             token: config('SLACK_TOKEN'),

@@ -16,6 +16,10 @@ function emailBack(msg) {
     postMessage(msg.channel, `O email oficial do Modo Pavêtivo é pavetivo@gmail.com a senha é epaveoupacume`)
 }
 
+function surubao(msg) {
+    postRawMessage(msg.channel, `:eyes: Eu ouvi surubão? :aw_yeah:`)
+}
+
 function mentions(msg) {
    postMessage(msg.channel, `🤖 Beep boop: qq seis qué cmg carái?!`)
 }
@@ -207,6 +211,7 @@ function splitRemoveCommand(message) {
 module.exports = {
     mentions,
     emailBack,
+    surubao,
     lolBack,
     spam,
     bolaCommand,
