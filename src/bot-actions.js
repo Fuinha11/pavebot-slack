@@ -50,6 +50,7 @@ function bolaCommand(msg) {
     switch (message[0]) {
         case "add":
             postMessage(msg.channel, bola.addAnswer(message.slice(1).join(" ")))
+            logMessage(bola.dump())
             break
         case "dump":
             postMessage(msg.channel, bola.dump())
@@ -76,6 +77,7 @@ function perolaCommand(msg) {
             break
         case "add":
             postMessage(msg.channel, perola.addPerola(message.slice(1).join(" ")))
+            logMessage(perola.dump())
             break
         case "dump":
             postMessage(msg.channel, perola.dump())

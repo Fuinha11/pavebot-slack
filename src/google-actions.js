@@ -20,12 +20,12 @@ function luckySearch(searchName, callback) {
 }
 
 function youtubeSearch(searchName, callback) {
-    let url = 'site%3Ayoutube.com+' + searchName
+    let url = 'site%3Ayoutube.com ' + searchName
     luckySearch(url, callback)
 }
 
 function wikiSearch(searchName, callback) {
-    let url = 'site%3Awikipedia.org+' + searchName
+    let url = 'site%3Awikipedia.org ' + searchName
     luckySearch(url, callback)
 }
 
