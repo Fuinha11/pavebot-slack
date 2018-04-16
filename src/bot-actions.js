@@ -148,7 +148,7 @@ function help(msg) {
         icon_emoji: config('ICON_EMOJI'),
         channel: msg.channel,
         username: 'PaveBot',
-        text: "Esse é um help geralzão assim...",
+        text: "Esse é um help geralzão assim...\nCaso eu tenha cochilado :sleeping: use o /wakeup pra me acordar :alarm_clock:\n\n",
         attachments: attachments
     }, (err, data) => {
         if (err) logMessage("buguei: - " + err.status + err.message)
