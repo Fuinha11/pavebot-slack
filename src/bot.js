@@ -49,6 +49,10 @@ bot.message((msg) => {
                 break
             case "!w":
                 actions.wSearch(msg)
+                break
+            case "!d20":
+                actions.rollDsix(msg)
+                break
         }
 
         if (msg.text.includes("surub"))

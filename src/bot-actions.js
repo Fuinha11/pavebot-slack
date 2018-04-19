@@ -9,11 +9,11 @@ const perola = require('./perolas')
 const gActions = require('./google-actions')
 
 function lolBack(msg) {
-    postMessage(msg.channel, `lol back to you mofo`)
+    postRawMessage(msg.channel, `lol back to you mofo`)
 }
 
 function emailBack(msg) {
-    postMessage(msg.channel, `O email oficial do Modo Pavêtivo é pavetivo@gmail.com a senha é epaveoupacume`)
+    postMessage(msg.channel, `O email oficial do Modo Pavêtivo é pavetivo@gmail.com a senha é epaveoupacume`, ':love_letter:')
 }
 
 function surubao(msg) {
@@ -49,6 +49,29 @@ function spam(msg) {
 
 }
 
+function rollDsix(msg) {
+    let words = splitRemoveCommand(msg.text)
+    let times = parseInt(words[0])
+    if (!times || times > 15)
+        times = 1
+    else
+        words = words.slice(1)
+    let size = parseInt(words[0])
+    if (!size)
+        size = 20
+
+    let answer = ""
+
+    for (let i = 0; i < times; i++){
+        let number = Math.ceil(Math.random() * (size))
+        answer += '🎲 = ' + number + '\n'
+    }
+
+
+
+    postMessage(msg.channel, answer, ':d20: Rolando um d' + size)
+}
+
 function bolaCommand(msg) {
     let message = splitRemoveCommand(msg.text)
     switch (message[0]) {
@@ -63,11 +86,10 @@ function bolaCommand(msg) {
             postMessage(msg.channel, bola.help())
             break
         default:
-            let finalMessage = message.join(" ")
-            finalMessage += "? \n"
+            let title = message.join(" ")
+            title = ":8ball: " + title
             let answer = bola.getRandomAnswer()
-            finalMessage += answer
-            postMessage(msg.channel, finalMessage)
+            postMessage(msg.channel, answer, title)
             break
     }
 
@@ -168,14 +190,15 @@ function botHelp() {
         "\n!help, esse super mega helper "
 }
 
-function postMessage(channel, message) {
+function postMessage(channel, body, title) {
+    title = title !== undefined ? title : ""
     slack.chat.postMessage({
         token: config('SLACK_TOKEN'),
         icon_emoji: config('ICON_EMOJI'),
         channel: channel,
         unfurl_links: true,
         username: 'PaveBot',
-        text: "```" + message + "```"
+        text: title + " ```" + body + "```"
     }, (err, data) => {
         if (err) logMessage("buguei: - " + err.status + err.message)
         let txt = _.truncate(data.message.text)
@@ -207,7 +230,6 @@ function splitRemoveCommand(message) {
     return words.slice(1)
 }
 
-
 module.exports = {
     mentions,
     emailBack,
@@ -221,5 +243,6 @@ module.exports = {
     postRawMessage,
     gSearch,
     ySearch,
-    wSearch
+    wSearch,
+    rollDsix
 }
