@@ -156,8 +156,10 @@ function wSearch(msg) {
 }
 
 function gResponse(channel, message, url) {
-    if (url.startsWith("http://ipv4.google.com/sorry/"))
+    if (url.startsWith("http://ipv4.google.com/sorry/")) {
         postMessage(channel, "Sorry guys, o tio Google me bloqueou... T~T")
+        logMessage("Sorry guys, o tio Google me bloqueou... T~T\nUrl: " + url)
+    }
     else if (url.startswith("http://www.google"))
         postMessage( channel, "[ " + message + " ] Não achei nada ='(")
     else
