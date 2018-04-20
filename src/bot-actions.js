@@ -67,9 +67,13 @@ function rollDsix(msg) {
         answer += '🎲 = ' + number + '\n'
     }
 
+    let title = ""
+    if (times === 1)
+         title = ':d20: Rolando um d' + size
+    else
+        title = ':d20: Rolando ' + times + ' d' + size
 
-
-    postMessage(msg.channel, answer, ':d20: Rolando um d' + size)
+    postMessage(msg.channel, answer, title)
 }
 
 function bolaCommand(msg) {
@@ -164,8 +168,9 @@ function help(msg) {
 
     let attachments = '['
         + '{"title":":8ball: Bola 8", "color":"#000", "text":"' + bola.help() + '"},'
-        + '{"title":":face_palm::skin-tone-5: Perolas", "color":"#fc9300", "text":"' + perola.help() + '"},'
         + '{"title":":mag: Google", "color":"#e20000", "text":"' + gActions.help() + '"},'
+        + '{"title":":d20: d20", "color":"#a111d6", "text":"' + diceHelp() + '"},'
+        + '{"title":":face_palm::skin-tone-5: Perolas", "color":"#fc9300", "text":"' + perola.help() + '"},'
         + '{"title":"🤖 PaveBot", "color":"#2fb4fc", "text":"' + botHelp() + '"}'
         + ']'
 
@@ -188,6 +193,12 @@ function botHelp() {
         "\n!email, infos do email pavetivo" +
         "\n!spam, spama o FDP sem dó!" +
         "\n!help, esse super mega helper "
+}
+
+function diceHelp() {
+    return "!d20, rola um d20" +
+        "\n!d20 (n), rola n d20" +
+        "\n!d20 (n) (m), rola n dm"
 }
 
 function postMessage(channel, body, title) {

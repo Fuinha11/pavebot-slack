@@ -38,7 +38,7 @@ function parseResponse(resp) {
 function help() {
     return "!g (termo), googleia o termo, safe search desativado + estou com sorte" +
         "\n!y (termo), estou com sorte só que no Youtube" +
-        "\n!w (termo, busca o termo na Wikipédia)" +
+        "\n!w (termo), busca o termo na Wikipédia" +
         "\n!g help, busca no google essa mensagem muito explicativa "
 }
 
