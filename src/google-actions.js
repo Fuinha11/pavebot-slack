@@ -4,7 +4,6 @@
 const request = require('request');
 
 function luckySearch(searchName, callback) {
-    searchName = searchName.split(" ").join("%20")
     let url = 'http://www.google.com/search?q=' + searchName + '&safe=inactive&btnI'
     const options = {
         url: url,
