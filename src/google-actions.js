@@ -1,21 +1,32 @@
 
 'use strict'
+var google = require('google')
+
+google.resultsPerPage = 25
 
 const request = require('request');
 
 function luckySearch(searchName, callback) {
-    let url = 'http://www.google.com/search?q=' + searchName + '&safe=inactive&btnI'
-    const options = {
-        url: url,
-        method: 'GET',
-        followAllRedirects: true,
-        followRedirect: true
-    };
-    request(options, function (error, response, body) {
-        if (error)
-            console.log(error.toString())
-        callback(this.uri.href)
+    google(searchName, function (err, res) {
+        if (err) console.error(err)
+        var link = res.links[0];
+        console.log(link.title + ' - ' + link.href)
+        console.log(link.description + "\n")
+        callback(link.href)
     })
+    //
+    // let url = 'http://www.google.com/search?q=' + searchName
+    // const options = {
+    //     url: url,
+    //     method: 'GET',
+    //     followAllRedirects: true,
+    //     followRedirect: true
+    // };
+    // request(options, function (error, response, body) {
+    //     if (error)
+    //         console.log(error.toString())
+    //     callback(parseResponse(this.uri.href))
+    // })
 }
 
 function youtubeSearch(searchName, callback) {

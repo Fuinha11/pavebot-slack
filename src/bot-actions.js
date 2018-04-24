@@ -156,15 +156,18 @@ function wSearch(msg) {
 }
 
 function gResponse(channel, message, url) {
-    if (url.startsWith("http://ipv4.google.com/sorry/")) {
-        postMessage(channel, "Sorry guys, o tio Google me bloqueou... T~T")
-        logMessage("Sorry guys, o tio Google me bloqueou... T~T\nUrl: " + url)
+    try {
+        if (url.startsWith("http://ipv4.google.com/sorry/")) {
+            postMessage(channel, "Sorry guys, o tio Google me bloqueou... T~T")
+            logMessage("Sorry guys, o tio Google me bloqueou... T~T\nUrl: " + url)
+        }
+        else if (url.startsWith("http://www.google"))
+            postMessage(channel, "[ " + message + " ] Não achei nada ='(")
+        else
+            postRawMessage(channel, "[ " + message + " ] " + url)
+    } catch (e) {
+        logMessage('Deu merda no google =(\n link: ' + url + '\nerro: ' + e.toString())
     }
-    else if (url.startswith("http://www.google"))
-        postMessage( channel, "[ " + message + " ] Não achei nada ='(")
-    else
-        postRawMessage( channel, "[ " + message + " ] " + url)
-
 }
 
 function help(msg) {
