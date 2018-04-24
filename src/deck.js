@@ -31,10 +31,10 @@ function printCard(number, suit) {
 
     switch (suit) {
         case 1:
-            card += '♦'
+            card += '♢'
             break
         case 2:
-            card += '♥'
+            card += '♡'
             break
         case 3:
             card += '♣'
