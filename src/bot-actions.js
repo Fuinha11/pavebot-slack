@@ -167,6 +167,7 @@ function gResponse(channel, message, url) {
             postRawMessage(channel, "[ " + message + " ] " + url)
     } catch (e) {
         logMessage('Deu merda no google =(\n link: ' + url + '\nerro: ' + e.toString())
+        postMessage(channel, "[ " + message + " ] Não achei nada ='(")
     }
 }
 
