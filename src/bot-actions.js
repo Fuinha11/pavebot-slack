@@ -209,7 +209,8 @@ function botHelp() {
     return "!lol, rí de você" +
         "\n!email, infos do email pavetivo" +
         "\n!spam, spama o FDP sem dó!" +
-        "\n!help, esse super mega helper "
+        "\n!help, esse super mega helper " +
+        "\n!card (n), compra n cartas"
 }
 
 function diceHelp() {
