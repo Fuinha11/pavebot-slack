@@ -7,6 +7,7 @@ const config = require('./config')
 const bola = require('./8ball')
 const perola = require('./perolas')
 const gActions = require('./google-actions')
+const deck = require('./deck')
 
 function lolBack(msg) {
     postRawMessage(msg.channel, `lol back to you mofo`)
@@ -74,6 +75,15 @@ function rollDsix(msg) {
         title = ':d20: Rolando ' + times + ' d' + size
 
     postMessage(msg.channel, answer, title)
+}
+
+function drawCard(msg) {
+    let words = splitRemoveCommand(msg.text)
+    let times = parseInt(words[0])
+    if (!times || times > 15)
+        times = 1
+
+    postMessage(msg.channel, deck.drawMultipleCards(times), "Comprando uma carta 🎴")
 }
 
 function bolaCommand(msg) {
@@ -262,5 +272,6 @@ module.exports = {
     gSearch,
     ySearch,
     wSearch,
-    rollDsix
+    rollDsix,
+    drawCard
 }

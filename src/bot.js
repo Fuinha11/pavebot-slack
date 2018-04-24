@@ -53,6 +53,9 @@ bot.message((msg) => {
             case "!d20":
                 actions.rollDsix(msg)
                 break
+            case "!card":
+                actions.drawCard(msg)
+                break
         }
 
         if (msg.text.includes("surub"))
