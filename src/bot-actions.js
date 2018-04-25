@@ -52,7 +52,6 @@ function spam(msg) {
 
 function rollDice(msg) {
     let words = splitRemoveCommand(msg.text)
-
     let title = ':d20: Rolando '
     let body = ""
     let sum = 0
@@ -246,9 +245,10 @@ function botHelp() {
 }
 
 function diceHelp() {
-    return "!d20, rola um d20" +
-        "\n!d20 (n), rola n d20" +
-        "\n!d20 (n) (m), rola n dm"
+    return "!roll, rola um d20" +
+        "\n!roll (n)d(m), rola n dm" +
+        "\n!roll (n)d(m) +x, rola n dm e soma x" +
+        "\nDica: vc pode mandar quantos dados e quantos bonus quiser"
 }
 
 function postMessage(channel, body, title) {
