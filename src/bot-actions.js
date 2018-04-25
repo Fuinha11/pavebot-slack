@@ -52,33 +52,61 @@ function spam(msg) {
 
 function rollDice(msg) {
     let words = splitRemoveCommand(msg.text)
-    let times = parseInt(words[0])
-    if (!times || times > 15)
-        times = 1
-    else
-        words = words.slice(1)
-    let size = parseInt(words[0])
-    if (!size)
-        size = 20
 
-    let answer = ""
+    let title = ':d20: Rolando '
+    let body = ""
     let sum = 0
+    let dices = []
+    let bonus = 0
+    let needsTotal = false
 
-    for (let i = 0; i < times; i++){
-        let number = Math.ceil(Math.random() * (size))
-        answer += '🎲 = ' + number + '\n'
-        sum += number
+    for (let j = 0; j < words.length; j++) {
+        if (words[j].match('\\d+d\\d+'))
+            dices.push(words[j])
+        else if (words[j].match('\\+\\d+'))
+            bonus += parseInt(words[j].split('+')[1])
     }
 
-    let title = ""
-    if (times === 1)
-         title = ':d20: Rolando um d' + size
-    else {
-        title = ':d20: Rolando ' + times + ' d' + size
-        answer += "Total = " + sum
+    if (dices.length === 0){
+        title += '1d20'
+        let number = Math.ceil(Math.random() * (20))
+        body += '🎲 = ' + number + '\n'
+        postMessage(msg.channel, body, title)
+        return
     }
 
-    postMessage(msg.channel, answer, title)
+    for (let j = 0; j < dices.length; j++) {
+        if (j !== 0) {
+            body += '----------\n\n'
+            if (j !== dices.length -1)
+                title += ', '
+            else
+                title += ' e '
+        }
+        title += dices[j]
+        let times = parseInt(dices[j].split('d')[0])
+        let size = parseInt(dices[j].split('d')[1])
+        if (times > 1 || j > 0)
+            needsTotal = true
+        body += dices[j] + ':\n'
+        for (let i = 0; i < times; i++){
+            let number = Math.ceil(Math.random() * (size))
+            body += '🎲 = ' + number + '\n'
+            sum += number
+        }
+    }
+
+    if (bonus !== 0) {
+        title += ' +' + bonus
+        body += '----------\n\n +' + bonus + '\n'
+        sum += bonus
+        needsTotal = true
+    }
+
+    if (needsTotal)
+        body += '----------\n\nTotal = ' + sum
+
+    postMessage(msg.channel, body, title)
 }
 
 function drawCard(msg) {
