@@ -53,7 +53,7 @@ bot.message((msg) => {
             case "!d20":
                 actions.rollDsix(msg)
                 break
-            case "!card":
+            case "!draw":
                 actions.drawCard(msg)
                 break
         }
