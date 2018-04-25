@@ -56,6 +56,9 @@ bot.message((msg) => {
             case "!draw":
                 actions.drawCard(msg)
                 break
+            case "!env":
+                actions.chtuluFicha(msg)
+                break
         }
 
         if (msg.text.includes("surub"))

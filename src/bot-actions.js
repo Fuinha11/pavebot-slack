@@ -66,12 +66,8 @@ function rollDice(msg) {
             bonus += parseInt(words[j].split('+')[1])
     }
 
-    if (dices.length === 0){
-        title += '1d20'
-        let number = Math.ceil(Math.random() * (20))
-        body += '🎲 = ' + number + '\n'
-        postMessage(msg.channel, body, title)
-        return
+    if (dices.length === 0) {
+        dices.push('1d20')
     }
 
     for (let j = 0; j < dices.length; j++) {
@@ -106,6 +102,26 @@ function rollDice(msg) {
         body += '----------\n\nTotal = ' + sum
 
     postMessage(msg.channel, body, title)
+}
+
+function chtuluFicha(msg) {
+    let title = 'Criando um investigador aleatório :mag:'
+    let body = "-------------------\n"
+    body += 'FOR: ' + _.pad(sumDice(3, 6, 0), 2) + '\tCON: ' + _.pad(sumDice(3, 6, 0), 2) + '\n'
+    body += 'DES: ' + _.pad(sumDice(3, 6, 0), 2) + '\tINT: ' + _.pad(sumDice(2, 6, 6), 2) + '\n'
+    body += 'TAM: ' + _.pad(sumDice(2, 6, 6), 2) + '\tPOD: ' + _.pad(sumDice(3, 6, 0), 2) + '\n'
+    body += 'APA: ' + _.pad(sumDice(3, 6, 0), 2) + '\tEDU: ' + _.pad(sumDice(3, 6, 3), 2) + '\n'
+    body += "-------------------\n"
+    postMessage(msg.channel, body, title)
+}
+
+function sumDice(times, size, bonus) {
+    let sum = 0
+    for (let i = 0; i < times; i++){
+        let number = Math.ceil(Math.random() * (size))
+        sum += number
+    }
+    return sum + bonus
 }
 
 function drawCard(msg) {
@@ -306,5 +322,6 @@ module.exports = {
     ySearch,
     wSearch,
     rollDice,
-    drawCard
+    drawCard,
+    chtuluFicha
 }
