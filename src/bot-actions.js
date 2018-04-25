@@ -50,7 +50,7 @@ function spam(msg) {
 
 }
 
-function rollDsix(msg) {
+function rollDice(msg) {
     let words = splitRemoveCommand(msg.text)
     let times = parseInt(words[0])
     if (!times || times > 15)
@@ -62,17 +62,21 @@ function rollDsix(msg) {
         size = 20
 
     let answer = ""
+    let sum = 0
 
     for (let i = 0; i < times; i++){
         let number = Math.ceil(Math.random() * (size))
         answer += '🎲 = ' + number + '\n'
+        sum += number
     }
 
     let title = ""
     if (times === 1)
          title = ':d20: Rolando um d' + size
-    else
+    else {
         title = ':d20: Rolando ' + times + ' d' + size
+        answer += "Total = " + sum
+    }
 
     postMessage(msg.channel, answer, title)
 }
@@ -273,6 +277,6 @@ module.exports = {
     gSearch,
     ySearch,
     wSearch,
-    rollDsix,
+    rollDice,
     drawCard
 }

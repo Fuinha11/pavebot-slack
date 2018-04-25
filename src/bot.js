@@ -50,8 +50,8 @@ bot.message((msg) => {
             case "!w":
                 actions.wSearch(msg)
                 break
-            case "!d20":
-                actions.rollDsix(msg)
+            case "!roll":
+                actions.rollDice(msg)
                 break
             case "!draw":
                 actions.drawCard(msg)
