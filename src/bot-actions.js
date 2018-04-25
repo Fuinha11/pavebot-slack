@@ -220,7 +220,7 @@ function help(msg) {
         + '{"title":":d20: d20", "color":"#a111d6", "text":"' + diceHelp() + '"},'
         + '{"title":":face_palm::skin-tone-5: Perolas", "color":"#fc9300", "text":"' + perola.help() + '"},'
         + '{"title":"🤖 PaveBot", "color":"#2fb4fc", "text":"' + botHelp() + '"},'
-        + '{"title":"🤖 PaveBot", "color":"#2fb4fc","image_url":"https://pavebot-slack.herokuapp.com/files/d20.png", "text":"' + botHelp() + '"}'
+        + '{"title":"🤖 PaveBot", "color":"#2fb4fc","image_url":"https://pavebot-slack.herokuapp.com/src/files/d20.png", "text":"' + botHelp() + '"}'
         + ']'
 
     slack.chat.postMessage({
