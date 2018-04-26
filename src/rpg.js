@@ -58,12 +58,91 @@ function rollDice(words) {
 
 function chtuluFicha() {
     let title = 'Criando um investigador aleatório :mag:'
-    let body = "-------------------\n"
-    body += 'FOR: ' + _.pad(sumDice(3, 6, 0), 2) + '\tCON: ' + _.pad(sumDice(3, 6, 0), 2) + '\n'
-    body += 'DES: ' + _.pad(sumDice(3, 6, 0), 2) + '\tINT: ' + _.pad(sumDice(2, 6, 6), 2) + '\n'
-    body += 'TAM: ' + _.pad(sumDice(2, 6, 6), 2) + '\tPOD: ' + _.pad(sumDice(3, 6, 0), 2) + '\n'
-    body += 'APA: ' + _.pad(sumDice(3, 6, 0), 2) + '\tEDU: ' + _.pad(sumDice(3, 6, 3), 2) + '\n'
-    body += "-------------------\n"
+
+    let armas = ['Faca (1d4+BD)  ',
+                 'Espada (1d6+BD)',
+                 'Pistola (1d8)  ',
+                 'Escopeta (4d6) ',
+                 'Rifle (2d6+4)  ']
+
+    let trecos = [ 'Bolinha        ',
+                 'Amuleto dourado',
+                 'Tocha          ',
+                 'Espelho        ',
+                 'Bandagens      ',
+                 'Corda          ',
+                 '               ',
+                 '               ',
+                 'Munição        ',
+                 'Livro          ']
+
+    let reliquias = ['Cálice sagrado ',
+                     'Lança chamas   ',
+                     'Cachorro       ']
+
+    let rand = Math.random()*100
+    let arma1 = armas[Math.round(Math.random()*armas.length)]
+    let arma2 = '               '
+    rand = Math.random()*100
+    if (rand > 90)
+        arma2 = reliquias[Math.round(Math.random()*reliquias.length)]
+    else if (rand > 15)
+        arma2 = trecos[Math.round(Math.random()*trecos.length)]
+
+    let name = "Investigador Tosco"
+    let FOR = sumDice(3, 6, 0)
+    let CON = sumDice(3, 6, 0)
+    let DES = _.pad(sumDice(3, 6, 0), 2)
+    let INT = _.pad(sumDice(2, 6, 6), 2)
+    let TAM = sumDice(2, 6, 6)
+    let POD = _.pad(sumDice(3, 6, 0), 2)
+    let APA = _.pad(sumDice(3, 6, 0), 2)
+    let EDU = _.pad(sumDice(3, 6, 3), 2)
+    let ideia = _.pad(INT*5, 2)
+    let conhec = _.pad(EDU*5, 2)
+    let sorte = _.pad(POD*5, 2)
+
+    let bdd = FOR+TAM
+    if (bdd < 12)
+        bdd = '-1d6'
+    else if (bdd < 17)
+        bdd = '-1d4'
+    else if (bdd < 25)
+        bdd = '0'
+    else if (bdd < 33)
+        bdd = '1d4'
+    else
+        bdd = '1d6'
+    bdd = _.pad(bdd, 4)
+
+    let pv = TAM + CON
+    pv = Math.ceil(pv/2)
+    pv = _.pad(pv, 2)
+    let san = _.pad(POD*5, 2)
+
+    FOR = _.pad(FOR, 2)
+    TAM = _.pad(TAM, 2)
+    CON = _.pad(CON, 2)
+
+    let body = `
+ _____________________________________
+|                                     |
+|  Nome: ${name}           |
+|  Bônus: ${bdd}          PV: ${pv}        |
+|                                     |
+|  FOR: ${FOR}              CON: ${CON}       |
+|  DES: ${DES}              INT: ${INT}       |
+|  TAM: ${TAM}              POD: ${POD}       |
+|  APA: ${APA}              EDU: ${EDU}       |
+|                                     |
+|  Ideia: ${ideia}            Conhe: ${conhec}     |
+|  Sorte: ${sorte}            Sanid: ${san}     |
+|                                     |
+|  Arma1: ${arma1}             |
+|  Arma2: ${arma2}             |
+|                                     |
+|_____________________________________|`
+
     return {body:body, title:title}
 }
 
